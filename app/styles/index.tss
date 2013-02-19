@@ -1,0 +1,7 @@
+"#index": {
+    title: "Info Widget Example",
+    navBarHidden: false,
+    barColor: "red",
+    backgroundColor: "gray",
+    exitOnClose: true
+}

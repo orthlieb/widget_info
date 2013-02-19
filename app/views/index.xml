@@ -1,0 +1,14 @@
+<Alloy>
+<Window id="win" platform="ios">
+    <NavigationGroup id="navgroup">
+        <Window id="index">
+            <Widget src="com.orthlieb.info" id="info"/>
+            <Label>This space intentionally left blank.</Label>
+        </Window>
+    </NavigationGroup>
+</Window>
+<Window id="index" platform="android">
+    <Widget src="com.orthlieb.info" id="info"/>
+    <Label>This space intentionally left blank.</Label>
+</Window>
+</Alloy>

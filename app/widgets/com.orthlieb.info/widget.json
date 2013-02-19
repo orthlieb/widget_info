@@ -1,0 +1,13 @@
+{
+	"id": "com.orthlieb.info",
+	"name": "com.orthlieb.info",
+	"description" : "An info button/menu to attach to the current window",
+	"author": "Carl Orthlieb",
+	"version": "1.0",
+	"copyright":"Copyright (c) 2012 com.orthlieb.* All rights reserved",
+	"license":"Apache 2.0",
+	"min-alloy-version": "1.0",
+	"min-titanium-version":"2.1",
+	"tags":"",
+	"platforms":"android,ios"
+}
