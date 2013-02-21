@@ -4,7 +4,7 @@
 The **Info** widget provides a convenience abstraction for a [right navigation](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.Window-property-rightNavButton) button on iOS and the [options menu](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.Android.Activity-property-onCreateOptionsMenu) on Android. You would use the Info widget to provide information on the current window or a currently selected item in your UI.
 
 ![iPhone Info Button](img/Screen Shot 1.png)
-![Android Info Activity Menu](img/Screen Shot 2.png)
+![Android Info Options Menu](img/Screen Shot 2.png)
 
 ## Manifest
 * Version: 1.0 (stable)
@@ -39,7 +39,7 @@ You can style any of the defined properties of the widget through the parent .ts
 ```
 "#info": {
     systemButton: Ti.UI.iPhone.SystemButton.ACTION,
-    icon: "info.png", 
+    icon: "images/star.png", 
     text: "Ding?"
 }
 ```
@@ -52,10 +52,23 @@ You can style any of the defined properties of the widget through the parent .ts
 
 | Name | Type | Description | 
 | ---- | ---- | ----------- |
-| [systemButton] | *constant* | iOS only. Should be one of the defined types in [Ti.UI.iPhone.SystemButton](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iPhone.SystemButton). This property is overridden by the *systemButton* property (meaning that if you supply both, then *systemButton* takes precedence). Default if neither *systemButton* or *icon* are specified is [Ti.UI.iPhone.SystemButton.INFO_LIGHT](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iPhone.SystemButton).|
+| [systemButton] | *constant* | iOS only. Should be one of the defined types in [Ti.UI.iPhone.SystemButton](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iPhone.SystemButton). This property overrides the *icon* property (meaning that if you supply both, then *systemButton* takes precedence). Default if neither *systemButton* or *icon* are specified is [Ti.UI.iPhone.SystemButton.INFO_LIGHT](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iPhone.SystemButton).|
 | [icon] | *string* | Background image for the button specified as a local file path or URL. If the icon is not specified then no icon appears on Android, just the text. On iOS, this property is overridden by the *systemButton* property (meaning that if you supply both, then *systemButton* takes precedence). | 
 | [text] | *string* | Text to display in the options menu on Android. Default: "Info" |
 
+Note that if you want to supply an icon you should supply it at a resolution appropriate to the resolution of the device.
+
+| Platform | Resolution | Path | Size |
+| -------- | ---------- | ------ | ---- |
+| iOS | regular | app/assets/iphone/images/\<imagename\>.\<ext\> | 20 x 20 |
+| iOS | retina | app/assets/iphone/images/\<imagename\>@2x.\<ext\>] | 40 x 40 |
+| Android | low | app/assets/android/images/low/\<imagename\>.\<ext\> | 15 x 15 |
+| Android | medium | app/assets/android/images/medium/\<imagename\>.\<ext\> | 20 x 20 |
+| Android | high | app/assets/android/images/high/\<imagename\>.\<ext\> | 30 x 30 |
+| Android | xdpi | app/assets/android/images/res-xdpi/\<imagename\>.\<ext\> | 40 x 40 |
+ 
+You can use Photoshop or another image editing tool to accomplish this or use the handy [spork](https://github.com/appcelerator/spork) utility which will resize images for you automatically. 
+ 
 ### Methods
 
 #### init(parentWindow)
@@ -65,6 +78,12 @@ Initializes the info button, attaching it to the parent window right nav button 
 | Parameter | Type | Description | 
 | ---- | ---- | ----------- |
 | parentWindow | *TiUIWindow* | Parent window to attach the info button to. |
+
+For example:
+
+```
+$.info.init($.index);
+```
 
 ## Future Work
 

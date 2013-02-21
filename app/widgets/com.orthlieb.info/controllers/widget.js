@@ -1,4 +1,4 @@
-var args = _.defaults(arguments[0], { systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT, icon: WPATH("Info.png") });
+var args = _.defaults(arguments[0], { });
 
 // Property: systemButton
 Object.defineProperty($, "systemButton", {
@@ -41,13 +41,16 @@ exports.init = function(parentWindow) {
         Ti.API.error("InfoButton: missing required parameter \'parent\'.");
     }
 
-    if (OS_IOS) {    
+    if (OS_IOS) {   
+        if (!$.systemButton && !$.icon)
+            $.systemButton = Ti.UI.iPhone.SystemButton.INFO_LIGHT;
+         
         // Info button: we remove it from it's parent and add to the right nav.
         parentWindow.remove($.button);
         parentWindow.rightNavButton = $.button;
         
         // Register events
-        $.button.on('click', function (e) {
+        $.button.addEventListener('click', function (e) {
             $.trigger('click', e);
         });
     } else if (OS_ANDROID) {
@@ -60,7 +63,8 @@ exports.init = function(parentWindow) {
                 title : $.text,
                 itemId : 7144
             });
-            menuItem.setIcon($.icon);
+            if ($.icon)
+                menuItem.setIcon($.icon);
             menuItem.addEventListener('click', function (e) {
                 $.trigger('click', e);
             });

@@ -7,7 +7,10 @@
 },
 
 "#info": {
-    systemButton: Ti.UI.iPhone.SystemButton.ACTION,
-    icon: "star.png", 
+    icon: "images/star.png", 
     text: "Ding?"
+},
+
+"#label": {
+    font: { fontSize: "14dp" }
 }
