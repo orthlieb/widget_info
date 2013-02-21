@@ -3,18 +3,17 @@ if (OS_ANDROID) {
     $.index.activity.onCreateOptionsMenu = function (e) {
         var menu = e.menu;
         var menuItem = menu.add({
-            title : "Ding",
+            title : "Dong?",
             itemId : 0
         });
         menuItem.addEventListener('click', function (e) {
-            alert("Ding Ding Ding");
+            alert("Dong! Dong! Dong!");
         });
     };
 }
 
-$.info.init({ parent: $.index, systemButton: Ti.UI.iPhone.SystemButton.CAMERA, icon: "star.png" });
-$.info.on('click', function (e) { alert("Info button/menu clicked!"); });
-
+$.info.init($.index);
+$.info.on('click', function (e) { alert("Ding! Ding! Ding!"); });
 if (OS_IOS)
     $.win.open();
 else

@@ -4,4 +4,10 @@
     barColor: "red",
     backgroundColor: "gray",
     exitOnClose: true
+},
+
+"#info": {
+    systemButton: Ti.UI.iPhone.SystemButton.ACTION,
+    icon: "star.png", 
+    text: "Ding?"
 }

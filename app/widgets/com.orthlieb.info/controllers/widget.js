@@ -1,35 +1,66 @@
-exports.init = function(args) {
-    if (!args.parent) {
+var args = _.defaults(arguments[0], { systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT, icon: WPATH("Info.png") });
+
+// Property: systemButton
+Object.defineProperty($, "systemButton", {
+    get: function() { 
+        return $._systemButton; 
+    },
+    set: function(systemButton) { 
+        $._systemButton = systemButton;
+        $.button.systemButton = $.systemButton;
+    }
+});
+
+// Property: icon
+Object.defineProperty($, "icon", {
+    get: function() { 
+        return $._icon; 
+    },
+    set: function(icon) { 
+        $._icon = icon;
+        $.button.image = $.icon;
+    }
+});
+
+// Property: text (creation time only)
+Object.defineProperty($, "text", {
+    get: function() { 
+        return $._text; 
+    },
+    set: function(text) { 
+        $._text = text;
+    }
+});
+
+// Apply any supplied properties to the object.
+_.extend($, args);
+
+// Method: init
+exports.init = function(parentWindow) {
+    if (!parentWindow) {
         Ti.API.error("InfoButton: missing required parameter \'parent\'.");
     }
 
-    if (OS_IOS) {
-        // Use the supplied icon if there is one.
-        if (args.systemButton) 
-            $.button.systemButton = args.systemButton;
-        else if (args.icon) 
-            $.button.image = args.icon;
-        else
-            $.button.systemButton = Ti.UI.iPhone.SystemButton.INFO_LIGHT;         
-    
+    if (OS_IOS) {    
+        // Info button: we remove it from it's parent and add to the right nav.
+        parentWindow.remove($.button);
+        parentWindow.rightNavButton = $.button;
+        
+        // Register events
         $.button.on('click', function (e) {
             $.trigger('click', e);
         });
-    
-        // Info button: we remove it from it's parent and add to the right nav.
-        args.parent.remove($.button);
-        args.parent.rightNavButton = $.button;
     } else if (OS_ANDROID) {
         // On Android, this is an info menu item.
         $.button.visible = false;
-        var temp = args.parent.activity.onCreateOptionsMenu;
-        args.parent.activity.onCreateOptionsMenu = function (e) {
+        var temp = parentWindow.activity.onCreateOptionsMenu;
+        parentWindow.activity.onCreateOptionsMenu = function (e) {
             var menu = e.menu;
             var menuItem = menu.add({
-                title : "Info",
+                title : $.text,
                 itemId : 7144
             });
-            menuItem.setIcon(args.icon ? args.icon : WPATH('Info.png'));
+            menuItem.setIcon($.icon);
             menuItem.addEventListener('click', function (e) {
                 $.trigger('click', e);
             });
