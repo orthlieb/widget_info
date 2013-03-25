@@ -26,6 +26,19 @@ The **Info** widget provides a convenience abstraction for a [right navigation](
 *  Create a widgets directory in your app directory if it doesn't already exist.
 *  Copy the widget_info/widgets/com.orthlieb.info folder into your app/widgets directory. 
 
+### Support for the Android Action Bar
+In Android 3.0 or greater, the info widget will use the Android Action Bar. To configure your application properly, you will have to add the following lines (or something very similar) to your tiapp.xml.
+
+```
+<android xmlns:android="http://schemas.android.com/apk/res/android"/>
+	<tool-api-level>11</tool-api-level>
+  	<manifest android:versionCode="1" android:versionName="1.2">
+  		<uses-sdk android:targetSdkVersion="11"/>
+	</manifest>
+</android>
+```
+Please read the instructions to modify your TiApp.xml [here](http://docs.appcelerator.com/titanium/latest/#!/guide/Android_Action_Bar).
+
 ## Create an Info in the View
 You can add a Info to a view by *requiring* the Info widget. 
 

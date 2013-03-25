@@ -5,7 +5,7 @@
     <version>1.0</version>
     <publisher>Carl Orthlieb</publisher>
     <url>http://</url>
-    <description>not specified</description>
+    <description>Info widget example</description>
     <copyright>2013 by com.orthlieb.* All rights reserved.</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
@@ -28,7 +28,12 @@
             <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
         </orientations>
     </iphone>
-    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <tool-api-level>11</tool-api-level>
+        <manifest android:versionCode="2" android:versionName="1.2">
+            <uses-sdk android:targetSdkVersion="11"/>
+        </manifest>
+    </android>
     <mobileweb>
         <precache/>
         <splash>

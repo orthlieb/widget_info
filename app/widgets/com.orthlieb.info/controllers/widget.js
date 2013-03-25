@@ -61,10 +61,12 @@ exports.init = function(parentWindow) {
             var menu = e.menu;
             var menuItem = menu.add({
                 title : $.text,
-                itemId : 7144
+                itemId : 7144,
+                showAsAction: Ti.Android.SHOW_AS_ACTION_IF_ROOM
             });
             if ($.icon)
                 menuItem.setIcon($.icon);
+              
             menuItem.addEventListener('click', function (e) {
                 $.trigger('click', e);
             });
